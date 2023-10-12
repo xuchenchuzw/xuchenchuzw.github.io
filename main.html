@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body class="center">
+    <main class="content">
+      <h1>
+        Spatiotemporal knowledge teacher-student reinforcement learning to detect liver tumors without contrast agents
+      </h1>
+      <h2 class="bottomPadding">C Xu, Y Song, D Zhang, LK Bittencourt, SH Tirumani, S Li</h2>
+      <div class="bottomPadding">
+        <hr size="5px" noshade=true>
+      </div>
+
+      <h2>Brief introduction</h2>
+      <article class="center">
+        <div class="bottomPadding">
+          <div class="bottomPadding">
+            In the context of liver tumor detection, traditional techniques utilizing contrast agents provide relatively
+            accurate diagnosis, but also bring potential high risks to patients, such as allergic reactions to contrast
+            agents, and increased detection complexity and cost. Therefore, being able to reliably detect liver tumors
+            from non-contrast-enhanced images without the use of contrast agents would be a significant advancement, not
+            only eliminating the risks of using contrast agents but also preventing discrepancies in experience among
+            radiologists and simplifying clinical workflows. The development and deployment of such technology,
+            especially if it can achieve the same detection reliability as using contrast agents, will have tremendous
+            clinical value.
+          </div>
+          <div class="bottomPadding">
+            Chenchu Xu of Anhui University, in collaboration with Dr. Shuo Li of Case Western Reserve University, has
+            proposed a new Spatiotemporal Knowledge Teacher-student Reinforcement Learning (SKT-RL) method, aimed at
+            efficiently and safely detecting liver tumors without the use of contrast agents. This technology, through a
+            teacher-student framework, extracts explicit liver tumor knowledge from clear contrast-enhanced images to
+            guide another network to directly detect tumors from non-enhanced images. Through SKT-RL's innovative
+            strategies in knowledge construction, transmission, and optimization, it not only enhances detection
+            accuracy but also simplifies clinical processes and reduces diagnostic costs to some extent. Experiments on
+            a liver tumor dataset containing 375 patients demonstrated that this method achieved outstanding performance
+            in the task of liver tumor detection without contrast enhancement, opening a new chapter in non-contrast
+            agent liver tumor technology.
+          </div>
+          <div><img src="./paper_imgs/fig1.png" class="content" /></div>
+          <div class="bottomPadding">
+            <p>
+              <b>
+              Fig. 1 Contrast-free liver tumor detection is a reliable alternative to traditional contrast-based
+              methods.
+            </b>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <h2>1. Research background</h2>
+      <article class="center">
+        <div>
+          <div class="bottomPadding">
+            The method of detecting liver tumors without the use of contrast enhancement is particularly beneficial for
+            patients allergic to contrast agents or pregnant women, as contrast agents may pose risks to these groups.
+            Liver tumor detection without contrast enhancement can provide diagnostic results that rival those obtained
+            with contrast agents, highlighting the potential of non-enhanced imaging as a reliable alternative for liver
+            tumor detection. As illustrated in Fig. 1, the non-contrast-enhanced detection method brings multiple
+            benefits: firstly, it eliminates the high risks associated with contrast agents, especially for patients
+            with renal failure who are prone to deadly nephrogenic systemic fibrosis; secondly, it reduces the
+            experience gap among radiologists by eliminating the subjectivity and non-reproducible nature of visual
+            assessment, thereby reducing high observer variability; thirdly, it simplifies clinical workflows by
+            reducing the need for multiple scans, thus saving costs and clinical resources.
+          </div>
+          <div class="bottomPadding">
+            The method of detecting liver tumors without contrast enhancement faces a significant challenge, namely that
+            liver tumors may be invisible on non-contrast-enhanced images. The teacher-student deep reinforcement
+            learning has shown great potential to be a solution. More specifically, on contrast-enhanced images, liver
+            tumors are very easy to see due to the additional enhancement of the tumors. Conversely, on
+            non-contrast-enhanced liver images, tumors may be barely visible or even invisible. This makes traditional
+            deep learning technologies based on direct mapping struggle to learn accurate representations of the tumors
+            and provide reliable detection. The teacher-student deep reinforcement learning has become a very promising
+            method to address detecting hard-to-identify liver tumors without contrast enhancement. This framework uses
+            deep reinforcement learning to improve the feature space of the tumors, consisting of two deep reinforcement
+            learning-based modules: a teacher network and a student module. The teacher network learns from
+            contrast-enhanced liver images, while the teacher network learns from non-contrast-enhanced liver images.
+            Then, the framework uses the tumor detection knowledge learned by the teacher network to guide the teacher
+            network in detecting hard-to-identify tumors in non-contrast-enhanced images.
+          </div>
+          <div><img src="./paper_imgs/fig2.png" class="content" /></div>
+          <div class="bottomPadding">
+            <p>
+              <b>
+                Fig. 2 The teacher-student deep reinforcement learning framework has more advantages than the traditional
+                 deep learning method of constructing direct mapping in this liver tumor detection task without contrast 
+                 agent enhancement.
+            </b>
+            </p>
+          </div>
+          <div class="bottomPadding">
+            At MICCAI-2022, the authors introduced a ternary knowledge set to construct the teacher-student deep
+            reinforcement learning framework, significantly enhancing its performance in liver tumor detection without
+            contrast enhancement. This ternary knowledge set, including actions, rewards, and features, is collected
+            from the teacher network, and shared with the student model to guide its exploration. This ternary knowledge
+            enables the student network not only to be guided on what action to take but also to understand why to take
+            that action by using the features, which provide the underlying explanation and purpose for the action and
+            reward.
+          </div>
+          <div><img src="./paper_imgs/fig3.png" class="content" /></div>
+          <div class="bottomPadding">
+            <p>
+              <b>
+                Fig. 3 This paper proposes a new spatiotemporal knowledge teacher-student reinforcement learning (SKT-RL)
+                 method, which extends the MICCAI-2022 conference paper from three aspects, thereby improving the liver 
+                 tumor detection results without contrast agent enhancement comprehensively.
+            </b>
+            </p>
+          </div>
+          <div class="bottomPadding">
+            In this paper, the authors propose a new Spatiotemporal Knowledge Teacher-Student Reinforcement Learning
+            (SKT-RL) method to enhance the construction, transfer, and optimization of the aforementioned ternary
+            knowledge set, thereby improving the results of liver tumor detection without contrast enhancement. As shown
+            in Fig. 3, first, SKT-RL includes a unique spatiotemporal ternary knowledge set that integrates the action
+            and its underlying rationale of deep reinforcement learning, i.e., the dual rationale within each state
+            (space) and within related historical states (time). In deep reinforcement learning sequential
+            decision-making, the integrated representation of 'what to do' and 'why' significantly enhances the teaching
+            capability of the framework. Secondly, SKT-RL features a pixel-level momentum transfer strategy, which
+            transfers sequence state features and actions at the pixel level, enhancing the accuracy of the knowledge
+            received by the student module. Here, SKT-RL introduces an adaptive controller, gradually reducing the
+            student module's dependency on the teacher module. Finally, SKT-RL also includes a new phase trend reward
+            function, combining different detection phases and historical trends. This function allows the teacher
+            network to adaptively select the best method for evaluating actions, thereby achieving more targeted network
+            training and increased robustness.
+          </div>
+        </div>
+      </article>
+
+      <h2>2. Experiments and results</h2>
+      <article class="center">
+        <div>
+          <div class="bottomPadding">
+            To verify the effectiveness of SKT-RL, experiments were conducted on a universal data set containing 395
+            liver tumor patients. In this dataset, each patient has non-contrast-enhanced liver MR images and
+            contrast-enhanced liver MR images.
+          </div>
+          <div><img src="./paper_imgs/fig4.png" class="content" /></div>
+          <div class="bottomPadding">
+            <p>
+              <b>
+                Fig. 4 SKT-RL accurately detects hemangiomas directly from non-enhanced liver tumor MR images.
+            </b>
+            </p>
+          </div>
+          <div class="bottomPadding">
+            As shown in Figures 4 and 5, SKT-RL is capable of directly detecting hemangiomas and hepatocellular
+            carcinoma from non-contrast-enhanced MR images, outperforming six existing liver tumor detection methods.
+            The purple bounding boxes indicate detection results obtained using various methods, while the white
+            bounding boxes represent ground truth detection labels. The SKT-RL method achieves the highest degree of
+            overlap between the purple and white bounding boxes, highlighting its superior performance.
+          </div>
+          <div><img src="./paper_imgs/fig5.png" class="content" /></div>
+          <div class="bottomPadding">
+            <p>
+              <b>
+                Fig. 5 SKT-RL accurately detects hepatocellular carcinoma directly from non-enhanced liver tumor MR images.
+            </b>
+            </p>
+          </div>
+          <div class="bottomPadding">
+            As shown in Tab. 1, in the quantified results across various detection metrics, SKT-RL improves the
+            pixel-level detection accuracy by 10.1% - 1.1%, Dice coefficient by 30.4% - 2.3%, recall (sensitivity) by
+            16.2% - 3.9%, and precision by 24.8% - 4.4% compared to the six combottomPaddingtive methods. Notably,
+            SKT-RL achieves the lowest standard deviation in terms of pixel-level detection accuracy and the Dice
+            coefficient metric. Furthermore, SKT-RL surpasses all detection metrics compared to the MICCAI-2022
+            conference paper version, with an increase of 1.1% in pixel-level detection accuracy, 2.3% in the Dice
+            coefficient, 3.9% in recall (sensitivity), and 4.4% in precision. These results validate the effectiveness
+            of the proposed spatio-temporal ternary knowledge set, pixel-level momentum migration strategy, and phase
+            trend reward in accurately representing the teacher network’s knowledge during DRL sequential decisions and
+            effectively transferring it to guide the student network. Moreover, compared to the detection results on
+            contrast-enhanced MR images, which is the upper bound for this task, SKT-RL achieves considerably close
+            accuracy. For instance, in terms of the Dice coefficient, the result on non-contrast-enhanced MR images is
+            only 3.21% lower than that on contrast-enhanced MR images.
+          </div>
+          <div><img src="./paper_imgs/fig6.png" class="content" /></div>
+          <div class="bottomPadding">
+            <p>
+              <b>
+                Tab. 1 The SKT-RL outperforms six existing methods on six evaluation matrices.
+            </b>
+            </p>
+          </div>
+        </div>
+      </article>
+      <h2>Summary</h2>
+      <article class="center">
+        <div class="bottomPadding">
+          This research proposes a novel Spatiotemporal Knowledge Teacher-student Reinforcement Learning (SKT-RL)
+          framework for directly detecting liver tumors from non-enhanced liver tumor MR images. This method introduces
+          a powerful spatiotemporal triad knowledge set to represent the intrinsic knowledge of the teacher network when
+          detecting tumors on contrast-enhanced liver tumor MR images. Additionally, a new pixel-level momentum transfer
+          strategy is introduced, enabling the knowledge set of the teacher network to effectively guide the student
+          network in detecting tumors from non-enhanced liver tumor MR images, and eventually to break free from the
+          knowledge of self-exploration detection. Lastly, a phase trend reward function is utilized, integrating the
+          knowledge set and transfer strategy into the student and teacher networks, and enabling all components to be
+          trained cohesively and efficiently. The proposed method achieves new state-of-the-art performance in detecting
+          liver tumors without using contrast agents, reaching a Dice coefficient of 71.37% and an accuracy of 69.06%
+          using data from 395 subjects. These results suggest that the proposed framework has immense potential to
+          become a highly efficient and accurate clinical tool for diagnosing liver tumors, avoiding the emerging toxic
+          issues related to contrast agents."
+        </div>
+      </article>
+    </main>
+  </body>
+  <style>
+    * {
+      margin: 0;
+    }
+    body {
+      width: 100vw;
+    }
+
+    .content {
+      width: 800px;
+      /* background-color: bisque; */
+    }
+
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .bottomPadding {
+      padding-bottom: 20px;
+    }
+  </style>
+</html>
